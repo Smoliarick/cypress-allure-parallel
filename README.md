@@ -164,7 +164,7 @@ main();
 
 4. Run scripts: `npm run one-thread-run` or `npm run multi-threads-run`
 
-# Different between multiple threads and one thread
+# Difference between multiple threads and one thread
 
 > You should have [`allure`](https://allurereport.org/docs/v2/install/) before running `allure generate` command.
 
