@@ -41,7 +41,7 @@ import "allure-cypress";
 # Add parallel running for Cypress autotests
 
 1. Install [`concurrently`](http://npmjs.org/package/concurrently) package for running commands in parallel: `npm i concurrently`
-2. Create a file which allows to run Cypress autotests in parallel (1 thread = 1 Cypress run). It doesn't help you if you want to run parallel specs in the same Cypress run.
+2. Create a file which allows running Cypress autotests in parallel (1 thread = 1 Cypress run). It doesn't help you, if you want to run parallel specs in the same Cypress run.
 
 ```js
 const fs = require("fs");
