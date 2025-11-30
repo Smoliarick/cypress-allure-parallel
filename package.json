@@ -1,0 +1,30 @@
+{
+  "name": "cypress-allure-parallel",
+  "version": "1.0.0",
+  "description": "Run Cypress autotests in parallel for Allure report",
+  "keywords": [
+    "cypress"
+  ],
+  "homepage": "https://github.com/Smoliarick/cypress-allure-parallel#readme",
+  "bugs": {
+    "url": "https://github.com/Smoliarick/cypress-allure-parallel/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Smoliarick/cypress-allure-parallel.git"
+  },
+  "license": "MIT",
+  "author": "Ivan Smolyarov",
+  "type": "commonjs",
+  "scripts": {
+    "one-thread-run": "npx cypress run --browser chrome",
+    "multi-threads-run": "node cypress-parallel.js -t 4 -d cypress/e2e -ext cy.js -- --browser chrome"
+  },
+  "dependencies": {
+    "concurrently": "^9.2.1",
+    "cypress": "^15.7.0"
+  },
+  "devDependencies": {
+    "allure-cypress": "^3.4.2"
+  }
+}
