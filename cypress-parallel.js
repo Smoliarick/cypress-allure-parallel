@@ -1,5 +1,6 @@
 const fs = require("fs");
-const exec = require("child_process").exec;
+const { exec } = require("child_process");
+const os = require("os");
 
 /**
  * Get all arguments with values from command line in 1 object
@@ -51,10 +52,12 @@ function getCommandLineArgs() {
 function getFiles(directory, ext = "cy.js") {
   try {
     const files = fs.readdirSync(`${directory}`, { recursive: true });
-    const directoryPathForFiles = directory.replace("/", "\\");
+    const directoryPathForFiles =
+      os.platform === "win32" ? directory.replace("/", "\\") : directory;
+    const separator = os.platform() === "win32" ? "\\" : "/";
     const cypressFiles = files
       .filter((f) => ~f.indexOf(ext))
-      .map((f) => `.\\${directoryPathForFiles}\\${f}`);
+      .map((f) => `.${separator}${directoryPathForFiles}${separator}${f}`);
     return cypressFiles;
   } catch (err) {
     console.error(err);
@@ -84,7 +87,9 @@ function main() {
   const commands = [];
   chunks.forEach((chunk) => {
     commands.push(
-      `"npx cypress run --spec ${chunk.join(",")} ${args.additional.join(" ")}"`
+      `"npx cypress run --spec ${chunk.join(",")} ${
+        args.additional ? args.additional.join(" ") : ""
+      }"`
     );
   });
   const concurrentlyCommand = `npx concurrently ${commands.join(" ")}`;
